@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Public Fields
+
     public float m_moveSpeed = 2.0f;
     public Camera mainCamera;
+    public GameObject bullet;
+    public GameObject bulletSpawnPoint;
+    
+    #endregion
+
+    #region Private Fields
+
     private Animator _animator;
+
+    #endregion
+    
 
     private void Start()
     {
@@ -46,6 +58,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _animator.SetBool("Fire", true);
+            Instantiate(bullet, bulletSpawnPoint.transform);
         }
     }
     
