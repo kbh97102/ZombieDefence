@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMove();
         ChasingCursor();
+        Fire();
     }
 
     void PlayerMove()
@@ -40,6 +41,14 @@ public class PlayerController : MonoBehaviour
         transform.Translate(velocity * m_moveSpeed * Time.deltaTime, Space.World);
     }
 
+    private void Fire()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _animator.SetBool("Fire", true);
+        }
+    }
+    
     private void ChasingCursor()
     {
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
