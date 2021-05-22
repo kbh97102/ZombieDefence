@@ -401,10 +401,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6929659058166827206, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6929659058166827206, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6929659058166827206, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 5255382128530321023, guid: 568def602ced61c4e8d67106a1b9a808, type: 3}
     - target: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 8999082946557121619}
     - target: {fileID: 8999082947367336582, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -455,3 +475,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+--- !u!1 &8999082946557121619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6125838082160816976, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+  m_PrefabInstance: {fileID: 8999082946557121618}
+  m_PrefabAsset: {fileID: 0}

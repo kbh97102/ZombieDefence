@@ -1,18 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class BulletController : MonoBehaviour
 {
 
     #region Unity
-
-    private void Start()
-    {
-        shooting();
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -23,9 +20,9 @@ public class BulletController : MonoBehaviour
 
     #endregion
 
-    private void shooting()
+    public void shooting(Vector3 vector3)
     {
-        GetComponent<Rigidbody>().AddForce(Vector3.forward);
+        GetComponent<Rigidbody>().AddForce(vector3*1000);
     }
     
 }

@@ -58,8 +58,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _animator.SetBool("Fire", true);
-            Instantiate(bullet, bulletSpawnPoint.transform);
+            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform);
+            bulletObject.GetComponent<BulletController>().shooting(GetCursorPosition());
         }
+    }
+
+    private Vector3 GetCursorPosition()
+    {
+        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+ 
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            return cameraRay.GetPoint(rayLength);
+        }
+
+        return Vector3.zero;
     }
     
     private void ChasingCursor()
