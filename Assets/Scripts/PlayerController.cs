@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _animator.SetBool("Fire", true);
+            _animator.SetTrigger("Fire");
             var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform);
             bulletObject.GetComponent<BulletController>().shooting(GetCursorPosition());
         }
