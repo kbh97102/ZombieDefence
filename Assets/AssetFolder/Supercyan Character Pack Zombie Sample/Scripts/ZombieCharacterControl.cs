@@ -62,7 +62,32 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void AutoUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, 0.1f*Time.deltaTime);
+        var targetPosition = target.transform.position;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f*Time.deltaTime);
+        Transform camera = Camera.main.transform;
+        if (camera == null)
+        {
+            return;
+        }
+           
+        m_currentV = Mathf.Lerp(m_currentV, targetPosition.z, Time.deltaTime * m_interpolation);
+        m_currentH = Mathf.Lerp(m_currentH, targetPosition.x, Time.deltaTime * m_interpolation);
+
+        Vector3 direction = camera.forward * m_currentV + camera.right * m_currentH;
+
+        float directionLength = direction.magnitude;
+        direction.y = 0;
+        direction = direction.normalized * directionLength;
+        
+        if (direction != Vector3.zero)
+        {
+            m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * m_interpolation);
+
+            transform.rotation = Quaternion.LookRotation(m_currentDirection);
+            
+
+            m_animator.SetFloat("MoveSpeed", direction.magnitude);
+        }
     }
 
     private void TankUpdate()
