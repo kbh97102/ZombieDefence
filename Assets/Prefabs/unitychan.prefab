@@ -4084,8 +4084,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 2
   mainCamera: {fileID: 0}
-  bullet: {fileID: 0}
-  bulletSpawnPoint: {fileID: 0}
+  bullet: {fileID: 5255382128530321023, guid: 568def602ced61c4e8d67106a1b9a808, type: 3}
+  bulletSpawnPoint: {fileID: 6125838082160816976}
 --- !u!1 &8999082947367495336
 GameObject:
   m_ObjectHideFlags: 0
