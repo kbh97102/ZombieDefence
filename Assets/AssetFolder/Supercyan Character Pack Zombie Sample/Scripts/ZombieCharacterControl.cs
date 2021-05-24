@@ -11,7 +11,8 @@ public class ZombieCharacterControl : MonoBehaviour
         /// <summary>
         /// Character freely moves in the chosen direction from the perspective of the camera
         /// </summary>
-        Direct
+        Direct,
+        Auto
     }
 
     [SerializeField] private float m_moveSpeed = 2;
@@ -20,7 +21,9 @@ public class ZombieCharacterControl : MonoBehaviour
     [SerializeField] private Animator m_animator = null;
     [SerializeField] private Rigidbody m_rigidBody = null;
 
-    [SerializeField] private ControlMode m_controlMode = ControlMode.Tank;
+    [SerializeField] private ControlMode m_controlMode = ControlMode.Auto;
+
+    [SerializeField] private GameObject target;
 
     private float m_currentV = 0;
     private float m_currentH = 0;
@@ -47,10 +50,19 @@ public class ZombieCharacterControl : MonoBehaviour
                 TankUpdate();
                 break;
 
+            case ControlMode.Auto:
+                AutoUpdate();
+                break;
+            
             default:
                 Debug.LogError("Unsupported state");
                 break;
         }
+    }
+
+    private void AutoUpdate()
+    {
+        transform.position = Vector3.Lerp(transform.position, target.transform.position, 0.1f*Time.deltaTime);
     }
 
     private void TankUpdate()

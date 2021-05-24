@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
-        ChasingCursor();
-        Fire();
+        // PlayerMove();
+        // ChasingCursor();
+        // Fire();
     }
 
     void PlayerMove()
