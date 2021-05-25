@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -27,9 +27,16 @@ public class ZombieSpawner : MonoBehaviour
     #endregion
 
     private IEnumerator spawner;
+    private Dictionary<int, GameObject> pointMap;
 
     private void Start()
     {
+        pointMap = new Dictionary<int, GameObject>();
+        pointMap.Add(0, point1);
+        pointMap.Add(1, point2);
+        pointMap.Add(2, point3);
+        pointMap.Add(3, point4);
+
         StartGenerateZombie();
     }
 
@@ -42,25 +49,39 @@ public class ZombieSpawner : MonoBehaviour
 
         StartCoroutine(spawner);
     }
-    
+
+    private GameObject GetRandomPosition()
+    {
+        int randomPosition = (int) Random.Range(0f, 4f);
+        return pointMap[randomPosition];
+    }
+
+    private void SpawnZombie()
+    {
+        GameObject position = GetRandomPosition();
+        int randomTarget = (int) Random.Range(0, 2f);
+        if (randomTarget <= 0)
+        {
+            var zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
+            zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_core);
+        }
+        else
+        {
+            var zombie = Instantiate(zombieToPlayer, position.transform.position, position.transform.rotation);
+            zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_player);
+        }
+    }
+
     private IEnumerator GenerateZombie()
     {
         var wave = gameManager.GetWave();
-        if (wave == 0)
+        var current = 0;
+        var end = (wave+1) * 3;
+        while (current < end)
         {
-            var zombie = Instantiate(zombieToTower, point1.transform.position, point1.transform.rotation);
-            zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_core);
+            SpawnZombie();
+            yield return new WaitForSeconds(3f);
+            current++;
         }
-        else if (wave == 1)
-        {
-        }
-        else if (wave == 2)
-        {
-        }
-        else if (wave >= 3)
-        {
-        }
-
-        yield return new WaitForSeconds(1f);
     }
 }
