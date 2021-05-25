@@ -133,7 +133,12 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Core"))
+        if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
+        {
+            m_animator.SetBool("Attack", true);
+        }
+
+        if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
         {
             m_animator.SetBool("Attack", true);
         }
@@ -141,7 +146,12 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Core"))
+        if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
+        {
+            m_animator.SetBool("Attack", false);
+        }
+
+        if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
         {
             m_animator.SetBool("Attack", false);
         }
