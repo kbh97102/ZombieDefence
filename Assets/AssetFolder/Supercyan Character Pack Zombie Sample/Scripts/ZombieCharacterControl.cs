@@ -4,13 +4,7 @@ public class ZombieCharacterControl : MonoBehaviour
 {
     private enum ControlMode
     {
-        /// <summary>
-        /// Up moves the character forward, left and right turn the character gradually and down moves the character backwards
-        /// </summary>
         Tank,
-        /// <summary>
-        /// Character freely moves in the chosen direction from the perspective of the camera
-        /// </summary>
         Direct,
         Auto
     }
@@ -23,7 +17,7 @@ public class ZombieCharacterControl : MonoBehaviour
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Auto;
 
-    [SerializeField] private GameObject target;
+    private GameObject target;
 
     private float m_currentV = 0;
     private float m_currentH = 0;
@@ -129,5 +123,10 @@ public class ZombieCharacterControl : MonoBehaviour
 
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
         }
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
     }
 }
