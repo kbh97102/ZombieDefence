@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ZombieCharacterControl : MonoBehaviour
 {
@@ -128,5 +129,21 @@ public class ZombieCharacterControl : MonoBehaviour
     public void SetTarget(GameObject target)
     {
         this.target = target;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Core"))
+        {
+            m_animator.SetBool("Attack", true);
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Core"))
+        {
+            m_animator.SetBool("Attack", false);
+        }
     }
 }
