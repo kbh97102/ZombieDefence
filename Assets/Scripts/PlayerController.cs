@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public float m_moveSpeed = 2.0f;
     public Camera mainCamera;
-    public GameObject bullet;
-    public GameObject bulletSpawnPoint;
+   
     
     #endregion
 
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMove();
         ChasingCursor();
-        Fire();
     }
 
     void PlayerMove()
@@ -53,29 +51,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(velocity * m_moveSpeed * Time.deltaTime, Space.World);
     }
 
-    private void Fire()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _animator.SetTrigger("Fire");
-            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform);
-            bulletObject.GetComponent<BulletController>().shooting(GetCursorPosition());
-        }
-    }
 
-    private Vector3 GetCursorPosition()
-    {
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
- 
-        if (groundPlane.Raycast(cameraRay, out rayLength))
-        {
-            return cameraRay.GetPoint(rayLength);
-        }
-
-        return Vector3.zero;
-    }
     
     private void ChasingCursor()
     {
