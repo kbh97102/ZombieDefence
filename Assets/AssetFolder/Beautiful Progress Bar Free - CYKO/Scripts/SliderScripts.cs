@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,8 @@ public class SliderScripts : MonoBehaviour
     public Slider slider;
     public Image fill;
 
-    private void Start()
+    private void Update()
     {
-        slider.value = 1f;
         FillSlider();
     }
 
