@@ -36,17 +36,11 @@ public class ZombieSpawner : MonoBehaviour
         pointMap.Add(1, point2);
         pointMap.Add(2, point3);
         pointMap.Add(3, point4);
-
-        StartGenerateZombie();
     }
 
     public void StartGenerateZombie()
     {
-        if (spawner == null)
-        {
-            spawner = GenerateZombie();
-        }
-
+        spawner = GenerateZombie();
         StartCoroutine(spawner);
     }
 
@@ -76,7 +70,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         var wave = gameManager.GetWave();
         var current = 0;
-        var end = (wave+1) * 3;
+        var end = (wave + 1) * 3;
         while (current < end)
         {
             SpawnZombie();

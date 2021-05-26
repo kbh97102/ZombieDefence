@@ -10,7 +10,7 @@ public class ZombieCharacterControl : MonoBehaviour
         Auto
     }
 
-    [SerializeField] private float m_moveSpeed = 2;
+    [SerializeField] private float m_moveSpeed = 5;
     [SerializeField] private float m_turnSpeed = 200;
 
     [SerializeField] private Animator m_animator = null;
@@ -80,9 +80,12 @@ public class ZombieCharacterControl : MonoBehaviour
 
             transform.rotation = Quaternion.LookRotation(m_currentDirection);
             
-
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
         }
+        // else
+        // {
+        //     m_animator.SetFloat("MoveSpeed", Time.deltaTime * m_moveSpeed);
+        // }
     }
 
     private void TankUpdate()
@@ -136,6 +139,7 @@ public class ZombieCharacterControl : MonoBehaviour
         if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
         {
             m_animator.SetBool("Attack", true);
+            Destroy(gameObject);
         }
 
         if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
