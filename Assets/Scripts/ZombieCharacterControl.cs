@@ -29,8 +29,15 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void Awake()
     {
-        if (!m_animator) { gameObject.GetComponent<Animator>(); }
-        if (!m_rigidBody) { gameObject.GetComponent<Animator>(); }
+        if (!m_animator)
+        {
+            gameObject.GetComponent<Animator>();
+        }
+
+        if (!m_rigidBody)
+        {
+            gameObject.GetComponent<Animator>();
+        }
     }
 
     private void FixedUpdate()
@@ -48,7 +55,7 @@ public class ZombieCharacterControl : MonoBehaviour
             case ControlMode.Auto:
                 AutoUpdate();
                 break;
-            
+
             default:
                 Debug.LogError("Unsupported state");
                 break;
@@ -58,13 +65,13 @@ public class ZombieCharacterControl : MonoBehaviour
     private void AutoUpdate()
     {
         var targetPosition = target.transform.position;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f*Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f * Time.deltaTime);
         Transform camera = Camera.main.transform;
         if (camera == null)
         {
             return;
         }
-           
+
         m_currentV = Mathf.Lerp(m_currentV, targetPosition.z, Time.deltaTime * m_interpolation);
         m_currentH = Mathf.Lerp(m_currentH, targetPosition.x, Time.deltaTime * m_interpolation);
 
@@ -73,13 +80,20 @@ public class ZombieCharacterControl : MonoBehaviour
         float directionLength = direction.magnitude;
         direction.y = 0;
         direction = direction.normalized * directionLength;
-        
+
+
         if (direction != Vector3.zero)
         {
-            m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * m_interpolation);
+            // m_currentDirection = Vector3.Slerp(m_currentDirection, direction,  m_interpolation);
+            //
+            // transform.rotation = Quaternion.LookRotation(m_currentDirection);
+            //
+            // Debug.Log("rotation "+transform.rotation);
 
-            transform.rotation = Quaternion.LookRotation(m_currentDirection);
-            
+            Vector3 lookAt = target.transform.position;
+            lookAt.y = transform.position.y;
+            transform.LookAt(lookAt);
+
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
         }
         // else
