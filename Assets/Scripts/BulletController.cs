@@ -14,7 +14,7 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            
+            Destroy(gameObject);
         }
     }
 
@@ -22,7 +22,8 @@ public class BulletController : MonoBehaviour
 
     public void shooting(Vector3 vector3)
     {
-        GetComponent<Rigidbody>().AddForce(vector3*1000);
+        Destroy(gameObject, 30f);
+        GetComponent<Rigidbody>().AddForce(vector3*100);
     }
     
 }

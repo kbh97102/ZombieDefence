@@ -22,13 +22,14 @@ public class ZombieSpawner : MonoBehaviour
 
     [Header("Core")] [SerializeField] private GameObject target_core;
 
-    public GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
 
     #endregion
 
     private IEnumerator spawner;
     private Dictionary<int, GameObject> pointMap;
 
+    
     private void Start()
     {
         pointMap = new Dictionary<int, GameObject>();
@@ -78,4 +79,5 @@ public class ZombieSpawner : MonoBehaviour
             current++;
         }
     }
+
 }

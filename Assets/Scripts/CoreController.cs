@@ -35,14 +35,15 @@ public class CoreController : MonoBehaviour
     private void Attacked()
     {
         currentHP -= 1;
-        if (currentHP <= 0)
-        {
-            //TODO GameOver
-        }
     }
     
     private void UpdateSlider()
     {
         slider.value = (float) currentHP / maxHP;
+    }
+
+    public int GetHP()
+    {
+        return currentHP;
     }
 }

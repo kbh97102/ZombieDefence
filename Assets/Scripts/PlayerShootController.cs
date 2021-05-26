@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ public class PlayerShootController : MonoBehaviour
     public Camera mainCamera;
     public AmmoController ammoController;
     
-    
     private Animator _animator;
 
     private bool isReloading;
@@ -19,7 +17,7 @@ public class PlayerShootController : MonoBehaviour
         isReloading = false;
         _animator = GetComponent<Animator>();
     }
-    
+
     private void Update()
     {
         Fire();
@@ -32,9 +30,14 @@ public class PlayerShootController : MonoBehaviour
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
 
+        Debug.DrawLine(transform.position, cameraRay.direction);
+
         if (groundPlane.Raycast(cameraRay, out rayLength))
         {
-            return cameraRay.GetPoint(rayLength);
+            var test =  cameraRay.GetPoint(rayLength);
+            test.x = bulletSpawnPoint.transform.position.x;
+            test.y = bulletSpawnPoint.transform.position.y;
+            return test;
         }
 
         return Vector3.zero;
@@ -46,16 +49,20 @@ public class PlayerShootController : MonoBehaviour
         {
             return;
         }
+
         if (!ammoController.CanFire())
         {
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
             ammoController.Fire();
             _animator.SetTrigger("Fire");
-            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform);
-            bulletObject.GetComponent<BulletController>().shooting(GetCursorPosition());
+            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+
+            
+            bulletObject.GetComponent<BulletController>().shooting(bulletSpawnPoint.transform.forward);
         }
     }
 
