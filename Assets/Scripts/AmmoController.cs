@@ -47,6 +47,8 @@ public class AmmoController : MonoBehaviour
             remainMagazine -= oneMagazine;
             currentMagazine = oneMagazine;
         }
+        
+        UpdateAmmo();
     }
 
     public void UpdateAmmo()
