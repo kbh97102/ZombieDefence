@@ -888,6 +888,11 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1053073826}
   mainCamera: {fileID: 963194227}
   ammoController: {fileID: 1535903036}
+--- !u!4 &508071152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8999082947367336582, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+  m_PrefabInstance: {fileID: 672080443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &597060388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,8 +1601,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931138571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.9, y: -13, z: 32.9}
+  m_LocalRotation: {x: -0, y: 0.46558565, z: -0, w: 0.88500285}
+  m_LocalPosition: {x: 40.102684, y: -13, z: -1.2923877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1204082497}
@@ -1610,7 +1615,7 @@ Transform:
   - {fileID: 11079407}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 55.496, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1627,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1694,6 +1700,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 51.634, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd04749518b441940be3e660449b8ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 508071152}
+  offset: {x: 0, y: 21, z: -11}
 --- !u!1 &1018543918
 GameObject:
   m_ObjectHideFlags: 0
