@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class ZombieCharacterControl : MonoBehaviour
@@ -29,10 +30,12 @@ public class ZombieCharacterControl : MonoBehaviour
     private readonly float m_interpolation = 10;
     private Vector3 m_currentDirection = Vector3.zero;
     private int hp;
+    private bool isAlive;
     
 
     private void Awake()
     {
+        isAlive = true;
         hp = 3;
         if (!m_animator)
         {
@@ -47,23 +50,9 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (m_controlMode)
+        if (isAlive)
         {
-            case ControlMode.Direct:
-                DirectUpdate();
-                break;
-
-            case ControlMode.Tank:
-                TankUpdate();
-                break;
-
-            case ControlMode.Auto:
-                AutoUpdate();
-                break;
-
-            default:
-                Debug.LogError("Unsupported state");
-                break;
+            AutoUpdate();
         }
     }
 
@@ -194,7 +183,15 @@ public class ZombieCharacterControl : MonoBehaviour
         hp -= 1;
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            m_animator.SetTrigger("Dead");
+            isAlive = false;
+            StartCoroutine("Died");
         }
+    }
+
+    private IEnumerator Died()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }
