@@ -10,6 +10,8 @@ public class ZombieCharacterControl : MonoBehaviour
         Auto
     }
 
+    #region Public Field
+
     [SerializeField] private float m_moveSpeed = 5;
     [SerializeField] private float m_turnSpeed = 200;
 
@@ -18,17 +20,20 @@ public class ZombieCharacterControl : MonoBehaviour
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Auto;
 
-    private GameObject target;
+    #endregion
 
+
+    private GameObject target;
     private float m_currentV = 0;
     private float m_currentH = 0;
-
     private readonly float m_interpolation = 10;
-
     private Vector3 m_currentDirection = Vector3.zero;
+    private int hp;
+    
 
     private void Awake()
     {
+        hp = 3;
         if (!m_animator)
         {
             gameObject.GetComponent<Animator>();
@@ -148,8 +153,17 @@ public class ZombieCharacterControl : MonoBehaviour
         this.target = target;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Attacked();
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
+
         if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
         {
             m_animator.SetBool("Attack", true);
@@ -172,6 +186,15 @@ public class ZombieCharacterControl : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
         {
             m_animator.SetBool("Attack", false);
+        }
+    }
+
+    private void Attacked()
+    {
+        hp -= 1;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

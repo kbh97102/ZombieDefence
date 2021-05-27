@@ -7,12 +7,17 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
 
-        if (other.gameObject.CompareTag("Object"))
+        if (other.CompareTag("Object"))
         {
             Destroy(gameObject);
         }
