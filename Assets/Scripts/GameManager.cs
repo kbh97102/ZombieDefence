@@ -85,5 +85,7 @@ public class GameManager : MonoBehaviour
     private void PlayerLose()
     {
         //TODO 졌을 때 화면   
+        
+    
     }
 }
