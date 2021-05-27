@@ -1,17 +1,18 @@
+using System;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
     #region Unity
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("Object"))
+        if (other.gameObject.CompareTag("Object"))
         {
             Destroy(gameObject);
         }
