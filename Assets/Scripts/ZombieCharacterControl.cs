@@ -20,7 +20,8 @@ public class ZombieCharacterControl : MonoBehaviour
     [SerializeField] private Rigidbody m_rigidBody = null;
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Auto;
-
+    [SerializeField] private ParticleSystem particleSystem;
+    
     #endregion
 
 
@@ -180,6 +181,7 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void Attacked()
     {
+        particleSystem.Play();
         hp -= 1;
         if (hp <= 0)
         {
