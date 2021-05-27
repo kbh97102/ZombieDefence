@@ -793,6 +793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestTreePineTall
       objectReference: {fileID: 0}
+    - target: {fileID: 1683262223191906, guid: e150e8680dcf9784a89843e55668ad0e, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4323023299243156, guid: e150e8680dcf9784a89843e55668ad0e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -919,10 +923,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveUI: {fileID: 138357504}
-  startButton: {fileID: 0}
+  startButton: {fileID: 597060390}
   spawner: {fileID: 176473735}
-  player: {fileID: 0}
-  core: {fileID: 0}
+  player: {fileID: 508071148}
+  core: {fileID: 1208988534}
 --- !u!4 &82627869
 Transform:
   m_ObjectHideFlags: 0
@@ -2669,6 +2673,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestCrate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4792997671261284, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -2725,6 +2733,10 @@ PrefabInstance:
     - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_Name
       value: ForestCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4792997671261284, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_RootOrder
@@ -3140,6 +3152,10 @@ PrefabInstance:
     - target: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
       propertyPath: m_Name
       value: ForestBarrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4304001766518610, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
       propertyPath: m_RootOrder
@@ -4289,6 +4305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestCrate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4792997671261284, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4632,10 +4652,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164552993c40f6548902eef628cfba4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5255382128530321023, guid: 568def602ced61c4e8d67106a1b9a808, type: 3}
+  bullet: {fileID: 3352585140028277036, guid: ef8f0981dc25d8a498dea224d4ca8ff7, type: 3}
   bulletSpawnPoint: {fileID: 1053073826}
   mainCamera: {fileID: 963194227}
   ammoController: {fileID: 1535903036}
+--- !u!114 &508071148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+  m_PrefabInstance: {fileID: 672080443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508071146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12aec9de3fdecf54ea624ea99cd4cd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &508071152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8999082947367336582, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
@@ -5964,6 +5995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestTreePineShort
       objectReference: {fileID: 0}
+    - target: {fileID: 1852941587909970, guid: 45fe3ec28eac2064d985117cf812ef9d, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4175797499355468, guid: 45fe3ec28eac2064d985117cf812ef9d, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -6253,6 +6288,10 @@ PrefabInstance:
     - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_Name
       value: ForestBrazzierRed (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4278446812860420, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_RootOrder
@@ -6973,6 +7012,10 @@ PrefabInstance:
     - target: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
       propertyPath: m_Name
       value: ForestBarrel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4304001766518610, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
       propertyPath: m_RootOrder
@@ -7910,6 +7953,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestBrazzierRed (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4278446812860420, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8405,6 +8452,10 @@ PrefabInstance:
     - target: {fileID: 1478007673441398, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
       propertyPath: m_Name
       value: ForestTreeAppleTall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478007673441398, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4532126804069816, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
       propertyPath: m_RootOrder
@@ -9646,6 +9697,10 @@ PrefabInstance:
     - target: {fileID: 1478007673441398, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
       propertyPath: m_Name
       value: ForestTreeAppleTall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478007673441398, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4532126804069816, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
       propertyPath: m_RootOrder
@@ -12526,6 +12581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestBrazzierRed
       objectReference: {fileID: 0}
+    - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4278446812860420, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -13111,6 +13170,10 @@ PrefabInstance:
     - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_Name
       value: ForestCrate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4792997671261284, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_RootOrder
@@ -14266,6 +14329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestBrazzierRed (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4278446812860420, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -14701,6 +14768,10 @@ PrefabInstance:
     - target: {fileID: 1296487970245184, guid: f4f82206765cef54ca8f19ce34136e8a, type: 3}
       propertyPath: m_Name
       value: ForestTreeAppleShort
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296487970245184, guid: f4f82206765cef54ca8f19ce34136e8a, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4958913941910646, guid: f4f82206765cef54ca8f19ce34136e8a, type: 3}
       propertyPath: m_RootOrder
@@ -15789,6 +15860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestBlock02
       objectReference: {fileID: 0}
+    - target: {fileID: 1113307236115910, guid: 3f28852fcfaa2fc4a9956ddd15ba61f0, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4838898407559900, guid: 3f28852fcfaa2fc4a9956ddd15ba61f0, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -16528,8 +16603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 432}
-  m_SizeDelta: {x: 500, y: 120}
+  m_AnchoredPosition: {x: 0, y: 480}
+  m_SizeDelta: {x: 800, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1962339583
 MonoBehaviour:
@@ -17361,6 +17436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestBarrel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 4304001766518610, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -17565,6 +17644,10 @@ PrefabInstance:
     - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_Name
       value: ForestCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 4792997671261284, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
       propertyPath: m_RootOrder
