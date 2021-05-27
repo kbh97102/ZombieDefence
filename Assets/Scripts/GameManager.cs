@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
         if (zombieCount <= 0)
         {
             isPlaying = false;
@@ -76,6 +75,11 @@ public class GameManager : MonoBehaviour
         {
             PlayerLose();
         }
+    }
+
+    public void ReduceZombieCount()
+    {
+        zombieCount -= 1;
     }
     
     private void PlayerLose()

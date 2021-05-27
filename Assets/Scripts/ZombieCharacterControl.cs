@@ -32,7 +32,8 @@ public class ZombieCharacterControl : MonoBehaviour
     private Vector3 m_currentDirection = Vector3.zero;
     private int hp;
     private bool isAlive;
-    
+    private GameManager gameManager;
+
 
     private void Awake()
     {
@@ -185,6 +186,7 @@ public class ZombieCharacterControl : MonoBehaviour
         hp -= 1;
         if (hp <= 0)
         {
+            gameManager.ReduceZombieCount();
             m_animator.SetTrigger("Dead");
             isAlive = false;
             StartCoroutine("Died");
@@ -195,5 +197,10 @@ public class ZombieCharacterControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    public void SetGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
     }
 }

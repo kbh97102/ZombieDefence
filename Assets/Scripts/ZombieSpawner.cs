@@ -55,16 +55,18 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject position = GetRandomPosition();
         int randomTarget = (int) Random.Range(0, 2f);
+        GameObject zombie;
         if (randomTarget <= 0)
         {
-            var zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
+            zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_core);
         }
         else
         {
-            var zombie = Instantiate(zombieToPlayer, position.transform.position, position.transform.rotation);
+            zombie = Instantiate(zombieToPlayer, position.transform.position, position.transform.rotation);
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_player);
         }
+        zombie.GetComponent<ZombieCharacterControl>().SetGameManager(gameManager);
     }
 
     private IEnumerator GenerateZombie()
