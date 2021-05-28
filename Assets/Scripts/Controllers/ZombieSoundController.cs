@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ZombieSoundController
+public class ZombieSoundController : MonoBehaviour
 {
     public enum ZombieSounds
     {
@@ -22,10 +22,10 @@ public class ZombieSoundController
     private AudioSource audioSource;
 
     private Dictionary<ZombieSounds, AudioClip> soundMap;
-    
-    public ZombieSoundController(AudioSource audioSource)
+
+
+    private void Awake()
     {
-        this.audioSource = audioSource;
         InitClip();
 
         soundMap = new Dictionary<ZombieSounds, AudioClip>();
@@ -33,6 +33,12 @@ public class ZombieSoundController
         soundMap.Add(ZombieSounds.Attacked, attackedSound);
         soundMap.Add(ZombieSounds.Idle, idleSound);
         soundMap.Add(ZombieSounds.Death, deathSound);
+    }
+
+    public void SetAudioSource(AudioSource audioSource)
+    {
+        this.audioSource = audioSource;
+       
     }
 
     private void InitClip()

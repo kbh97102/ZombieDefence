@@ -13,9 +13,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private GameObject point3;
     [SerializeField] private GameObject point4;
 
-    [Header("Zombie prefabs")] [SerializeField]
-    private GameObject zombieToPlayer;
-
+    [Header("Zombie prefabs")]
     [SerializeField] private GameObject zombieToTower;
 
     [Header("Player")] [SerializeField] private GameObject target_player;
@@ -64,7 +62,7 @@ public class ZombieSpawner : MonoBehaviour
         }
         else
         {
-            zombie = Instantiate(zombieToPlayer, position.transform.position, position.transform.rotation);
+            zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_player);
         }
         zombie.GetComponent<ZombieCharacterControl>().SetGameManager(gameManager);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class ZombieCharacterControl : MonoBehaviour
@@ -21,7 +20,8 @@ public class ZombieCharacterControl : MonoBehaviour
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Auto;
     [SerializeField] private ParticleSystem particleSystem;
-    
+    [SerializeField] private ZombieSoundController zombieSoundController;
+
     #endregion
 
 
@@ -31,13 +31,11 @@ public class ZombieCharacterControl : MonoBehaviour
     private readonly float m_interpolation = 10;
     private Vector3 m_currentDirection = Vector3.zero;
     private int hp;
-    private bool isAlive;
+    public bool isAlive;
     private GameManager gameManager;
-    private ZombieSoundController zombieSoundController;
 
     private void Awake()
     {
-        zombieSoundController = new ZombieSoundController(GetComponent<AudioSource>());
         isAlive = true;
         hp = 3;
         if (!m_animator)
@@ -49,6 +47,12 @@ public class ZombieCharacterControl : MonoBehaviour
         {
             gameObject.GetComponent<Animator>();
         }
+    }
+
+    private void Start()
+    {
+        zombieSoundController.SetAudioSource(this.GetComponent<AudioSource>());
+        StartCoroutine("PlayIdleSound");
     }
 
     private void FixedUpdate()
@@ -92,7 +96,6 @@ public class ZombieCharacterControl : MonoBehaviour
             transform.LookAt(lookAt);
 
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
-            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Idle);
         }
         // else
         // {
@@ -156,7 +159,6 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-
         if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
         {
             m_animator.SetBool("Attack", true);
@@ -194,6 +196,7 @@ public class ZombieCharacterControl : MonoBehaviour
             m_animator.SetTrigger("Dead");
             isAlive = false;
             StartCoroutine("Died");
+            StopCoroutine("PlayIdleSound");
             zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Death);
         }
         else
@@ -206,6 +209,16 @@ public class ZombieCharacterControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    private IEnumerator PlayIdleSound()
+    {
+        while (isAlive)
+        {
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Idle);
+
+            yield return new WaitForSeconds(3f);
+        }
     }
 
     public void SetGameManager(GameManager gameManager)
