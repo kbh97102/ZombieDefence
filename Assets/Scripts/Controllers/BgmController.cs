@@ -16,6 +16,19 @@ public class BgmController : MonoBehaviour
         source.Play();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StopBGM();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayBGM();
+        }
+    }
+
     public void PlayBGM()
     {
         source.Play();
