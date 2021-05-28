@@ -28,6 +28,6 @@ public class BulletController : MonoBehaviour
     public void shooting(Vector3 vector3)
     {
         Destroy(gameObject, 30f);
-        GetComponent<Rigidbody>().AddForce(vector3 * 1500);
+        GetComponent<Rigidbody>().AddForce(vector3 * 3000);
     }
 }
