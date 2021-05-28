@@ -18,7 +18,6 @@ public class ResultUI : MonoBehaviour
 
     public void OnClickRetry()
     {
-        Debug.Log("?");
         this.gameObject.SetActive(false);
         gameManager.StartGame();
     }
