@@ -12,8 +12,11 @@ public class PlayerShootController : MonoBehaviour
 
     private bool isReloading;
 
+    private FireSoundController soundController;
+
     private void Start()
     {
+        soundController = new FireSoundController(GetComponent<AudioSource>());
         isReloading = false;
         _animator = GetComponent<Animator>();
     }
@@ -57,6 +60,7 @@ public class PlayerShootController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            soundController.PlaySound("fire");
             ammoController.Fire();
             _animator.SetTrigger("Fire");
             var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
@@ -70,6 +74,7 @@ public class PlayerShootController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            soundController.PlaySound("reload");
             StartCoroutine("test");
             isReloading = true;
             _animator.SetTrigger("Reload");
