@@ -58,7 +58,7 @@ public class PlayerShootController : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             soundController.PlaySound("fire");
             ammoController.Fire();
@@ -66,7 +66,7 @@ public class PlayerShootController : MonoBehaviour
             var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
 
             
-            bulletObject.GetComponent<BulletController>().shooting(bulletSpawnPoint.transform.forward);
+            bulletObject.GetComponent<Rigidbody>().AddForce(bulletObject.transform.forward * 3000);
         }
     }
 

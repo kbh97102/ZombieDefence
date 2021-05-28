@@ -28,9 +28,41 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMove();
-        ChasingCursor();
+        // ChasingCursor();
+        PlayerArrowKey();
     }
 
+    private void PlayerArrowKey()
+    {
+        var selfRotation = transform.rotation;
+        if (Input.GetKey (KeyCode.UpArrow)) {
+            selfRotation = Quaternion.Euler (0, 0, 0);
+        }
+        if (Input.GetKey (KeyCode.DownArrow)) {
+            selfRotation = Quaternion.Euler (0, 180, 0);
+        }
+        if (Input.GetKey (KeyCode.LeftArrow)) {
+            selfRotation = Quaternion.Euler (0, 270, 0);
+        }
+        if (Input.GetKey (KeyCode.RightArrow)) {
+            selfRotation = Quaternion.Euler (0, 90, 0);
+        }
+        if (Input.GetKey (KeyCode.UpArrow) && Input.GetKey (KeyCode.LeftArrow)) {
+            selfRotation = Quaternion.Euler (0, 315, 0);
+        }
+        if (Input.GetKey (KeyCode.UpArrow) && Input.GetKey (KeyCode.RightArrow)) {
+            selfRotation = Quaternion.Euler (0, 45, 0);
+        }
+        if (Input.GetKey (KeyCode.DownArrow) && Input.GetKey (KeyCode.LeftArrow)) {
+            selfRotation = Quaternion.Euler (0, 225, 0);
+        }
+        if (Input.GetKey (KeyCode.DownArrow) && Input.GetKey (KeyCode.RightArrow)) {
+            selfRotation = Quaternion.Euler (0, 135, 0);
+        }
+        
+        transform.rotation = Quaternion.RotateTowards (transform.rotation, selfRotation, 1000 * Time.deltaTime);
+    }
+    
     void PlayerMove()
     {
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
