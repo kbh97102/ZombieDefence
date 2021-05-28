@@ -28,10 +28,11 @@ public class ZombieSpawner : MonoBehaviour
 
     private IEnumerator spawner;
     private Dictionary<int, GameObject> pointMap;
-
+    private ArrayList zombies;
     
     private void Start()
     {
+        zombies = new ArrayList();
         pointMap = new Dictionary<int, GameObject>();
         pointMap.Add(0, point1);
         pointMap.Add(1, point2);
@@ -67,6 +68,7 @@ public class ZombieSpawner : MonoBehaviour
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_player);
         }
         zombie.GetComponent<ZombieCharacterControl>().SetGameManager(gameManager);
+        zombies.Add(zombie);
     }
 
     private IEnumerator GenerateZombie()
@@ -82,4 +84,13 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
+    public void ResetZombies()
+    {
+        StopCoroutine("GenerateZombie");
+        foreach (GameObject zombie in zombies)
+        {
+            Destroy(zombie);
+        }
+        zombies.Clear();
+    }
 }

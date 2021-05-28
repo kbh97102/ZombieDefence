@@ -10,15 +10,17 @@ public class GameManager : MonoBehaviour
     
     public ZombieSpawner spawner;
 
-    public PlayerController player;
+    public GameObject player;
     public CoreController core;    
     
     private int wave;
     private bool isPlaying;
     private int zombieCount;
+    private PlayerController playerController;
     
     private void Start()
     {
+        playerController = player.GetComponent<PlayerController>();
         isPlaying = false;
         wave = 0;
         UpdateWave();
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (core.GetHP() <= 0 || player.GetHP() <= 0)
+        if (core.GetHP() <= 0 || playerController.GetHP() <= 0)
         {
             PlayerLose();
         }
@@ -80,6 +82,16 @@ public class GameManager : MonoBehaviour
     public void ReduceZombieCount()
     {
         zombieCount -= 1;
+    }
+
+    public void ReSetGame()
+    {
+        zombieCount = 0;
+        wave = 0;
+        isPlaying = false;
+        startButton.gameObject.SetActive(true);
+        player.GetComponent<PlayerShootController>().ResetAmmo();
+        spawner.ResetZombies();
     }
     
     private void PlayerLose()

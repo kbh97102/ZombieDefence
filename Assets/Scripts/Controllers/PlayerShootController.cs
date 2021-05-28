@@ -82,4 +82,9 @@ public class PlayerShootController : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         isReloading = false;
     }
+
+    public void ResetAmmo()
+    {
+        ammoController.ResetAmmo();
+    }
 }

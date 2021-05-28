@@ -12,10 +12,7 @@ public class AmmoController : MonoBehaviour
 
     private void Start()
     {
-        oneMagazine = 29;
-        currentMagazine = oneMagazine;
-        remainMagazine = 350;
-        UpdateAmmo();
+        ResetAmmo();
     }
 
     public bool CanFire()
@@ -28,7 +25,7 @@ public class AmmoController : MonoBehaviour
         currentMagazine -= 1;
         UpdateAmmo();
     }
-    
+
     public void reload()
     {
         if (remainMagazine <= 0)
@@ -47,7 +44,7 @@ public class AmmoController : MonoBehaviour
             remainMagazine -= oneMagazine;
             currentMagazine = oneMagazine;
         }
-        
+
         UpdateAmmo();
     }
 
@@ -55,5 +52,13 @@ public class AmmoController : MonoBehaviour
     {
         currentAmmo.text = currentMagazine.ToString();
         totalAmmo.text = remainMagazine.ToString();
+    }
+
+    public void ResetAmmo()
+    {
+        oneMagazine = 29;
+        currentMagazine = oneMagazine;
+        remainMagazine = 350;
+        UpdateAmmo();
     }
 }
