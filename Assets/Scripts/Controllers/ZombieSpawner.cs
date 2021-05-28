@@ -27,6 +27,8 @@ public class ZombieSpawner : MonoBehaviour
     private IEnumerator spawner;
     private Dictionary<int, GameObject> pointMap;
     private ArrayList zombies;
+
+    private Coroutine spawnWorker;
     
     private void Start()
     {
@@ -41,7 +43,7 @@ public class ZombieSpawner : MonoBehaviour
     public void StartGenerateZombie()
     {
         spawner = GenerateZombie();
-        StartCoroutine(spawner);
+        spawnWorker = StartCoroutine(spawner);
     }
 
     private GameObject GetRandomPosition()
@@ -84,9 +86,14 @@ public class ZombieSpawner : MonoBehaviour
 
     public void ResetZombies()
     {
-        StopCoroutine("GenerateZombie");
+        if (spawnWorker != null)
+        {
+            StopCoroutine(spawnWorker);
+        }
+        
         foreach (GameObject zombie in zombies)
         {
+            zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
             Destroy(zombie);
         }
         zombies.Clear();

@@ -31,9 +31,11 @@ public class ZombieCharacterControl : MonoBehaviour
     private readonly float m_interpolation = 10;
     private Vector3 m_currentDirection = Vector3.zero;
     private int hp;
-    public bool isAlive;
+    private bool isAlive;
     private GameManager gameManager;
 
+    private Coroutine idleSoundWorker;
+    
     private void Awake()
     {
         isAlive = true;
@@ -52,7 +54,7 @@ public class ZombieCharacterControl : MonoBehaviour
     private void Start()
     {
         zombieSoundController.SetAudioSource(this.GetComponent<AudioSource>());
-        StartCoroutine("PlayIdleSound");
+        idleSoundWorker = StartCoroutine("PlayIdleSound");
     }
 
     private void FixedUpdate()
@@ -224,5 +226,14 @@ public class ZombieCharacterControl : MonoBehaviour
     public void SetGameManager(GameManager gameManager)
     {
         this.gameManager = gameManager;
+    }
+
+    public void StopPlaySound()
+    {
+        isAlive = false;
+        if (idleSoundWorker != null)
+        {
+            StopCoroutine(idleSoundWorker);
+        }
     }
 }

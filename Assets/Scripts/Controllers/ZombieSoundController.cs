@@ -45,7 +45,7 @@ public class ZombieSoundController : MonoBehaviour
     {
         idleSound = Resources.Load<AudioClip>("idleSound");
         attackSound = Resources.Load<AudioClip>("attackSound");
-        deathSound = Resources.Load<AudioClip>("deathSound");
+        deathSound = Resources.Load<AudioClip>("deathSound");       
         attackedSound = Resources.Load<AudioClip>("attackedSound");
     }
 

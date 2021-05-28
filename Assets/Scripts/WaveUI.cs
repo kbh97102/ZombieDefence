@@ -69,6 +69,6 @@ public class WaveUI : MonoBehaviour
     public void ResetWaveUI()
     {
         number1.sprite = zero;
-        number2.sprite = one;
+        number2.sprite = zero;
     }
 }

@@ -42,6 +42,12 @@ public class CoreController : MonoBehaviour
         slider.value = (float) currentHP / maxHP;
     }
 
+    public void ResetHP()
+    {
+        currentHP = 10;
+        UpdateSlider();
+    }
+    
     public int GetHP()
     {
         return currentHP;

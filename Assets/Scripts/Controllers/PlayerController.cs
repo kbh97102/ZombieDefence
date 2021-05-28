@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        hp = 10;
+        hp = 1;
         _animator = GetComponent<Animator>();
     }
 
@@ -81,5 +81,10 @@ public class PlayerController : MonoBehaviour
     public int GetHP()
     {
         return hp;
+    }
+
+    public void ResetHP()
+    {
+        hp = 1;
     }
 }

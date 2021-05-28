@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI")] public WaveUI waveUI;
     public Button startButton;
+    public GameObject resultPanel;
 
     public ZombieSpawner spawner;
 
@@ -86,8 +87,12 @@ public class GameManager : MonoBehaviour
 
     public void ReSetGame()
     {
+        playerController.ResetHP();
+        core.ResetHP();
+        player.GetComponent<PlayerShootController>().ResetAmmo();
         zombieCount = 0;
         wave = 0;
+        waveUI.ResetWaveUI();
         isPlaying = false;
         startButton.gameObject.SetActive(true);
         player.GetComponent<PlayerShootController>().ResetAmmo();
@@ -97,5 +102,7 @@ public class GameManager : MonoBehaviour
     private void PlayerLose()
     {
         //TODO 졌을 때 화면   
+        ReSetGame();
+        resultPanel.gameObject.SetActive(true);
     }
 }
