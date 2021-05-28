@@ -1,23 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("UI")]
-    public Text waveUI;
+    [Header("UI")] public WaveUI waveUI;
     public Button startButton;
-    
+
     public ZombieSpawner spawner;
 
     public GameObject player;
-    public CoreController core;    
-    
+    public CoreController core;
+
     private int wave;
     private bool isPlaying;
     private int zombieCount;
     private PlayerController playerController;
-    
+
+
     private void Start()
     {
         playerController = player.GetComponent<PlayerController>();
@@ -28,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        CheckWaveEnd(); 
+        CheckWaveEnd();
         CheckLose();
     }
 
@@ -36,10 +35,10 @@ public class GameManager : MonoBehaviour
     {
         return wave;
     }
-    
+
     public void UpdateWave()
     {
-        waveUI.text = wave.ToString();
+        waveUI.NextWaveUI(wave);
     }
 
     public void StartGame()
@@ -56,6 +55,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
         if (zombieCount <= 0)
         {
             isPlaying = false;
@@ -93,11 +93,9 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerShootController>().ResetAmmo();
         spawner.ResetZombies();
     }
-    
+
     private void PlayerLose()
     {
         //TODO 졌을 때 화면   
-        
-    
     }
 }
