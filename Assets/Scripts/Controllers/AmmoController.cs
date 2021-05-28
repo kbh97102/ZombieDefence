@@ -15,6 +15,11 @@ public class AmmoController : MonoBehaviour
         ResetAmmo();
     }
 
+    public int GetAllAmmo()
+    {
+        return currentMagazine + remainMagazine;
+    }
+    
     public bool CanFire()
     {
         return currentMagazine > 0;

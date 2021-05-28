@@ -101,7 +101,24 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLose()
     {
-        //TODO 졌을 때 화면   
+        //TODO 졌을 때 화면
+
+        if (wave <= 0)
+        {
+            wave = 0;
+        }
+        else
+        {
+            wave -= 1;
+        }
+
+            resultPanel.GetComponent<ResultUI>().SetResult(
+            player.GetComponent<PlayerShootController>().GetAmmo().ToString(),
+            core.GetHP().ToString(),
+            playerController.GetHP().ToString(),
+            wave.ToString(),
+            zombieCount.ToString()
+        );
         ReSetGame();
         resultPanel.gameObject.SetActive(true);
     }

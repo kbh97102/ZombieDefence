@@ -92,5 +92,9 @@ public class PlayerShootController : MonoBehaviour
     {
         ammoController.ResetAmmo();
     }
-    
+
+    public int GetAmmo()
+    {
+        return ammoController.GetAllAmmo();
+    }
 }
