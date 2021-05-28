@@ -33,10 +33,11 @@ public class ZombieCharacterControl : MonoBehaviour
     private int hp;
     private bool isAlive;
     private GameManager gameManager;
-
+    private ZombieSoundController zombieSoundController;
 
     private void Awake()
     {
+        zombieSoundController = new ZombieSoundController(GetComponent<AudioSource>());
         isAlive = true;
         hp = 3;
         if (!m_animator)
@@ -91,6 +92,7 @@ public class ZombieCharacterControl : MonoBehaviour
             transform.LookAt(lookAt);
 
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Idle);
         }
         // else
         // {
@@ -159,11 +161,13 @@ public class ZombieCharacterControl : MonoBehaviour
         {
             m_animator.SetBool("Attack", true);
             Destroy(gameObject);
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
         }
 
         if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
         {
             m_animator.SetBool("Attack", true);
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
         }
     }
 
@@ -190,6 +194,11 @@ public class ZombieCharacterControl : MonoBehaviour
             m_animator.SetTrigger("Dead");
             isAlive = false;
             StartCoroutine("Died");
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Death);
+        }
+        else
+        {
+            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attacked);
         }
     }
 
