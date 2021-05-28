@@ -17,9 +17,11 @@ public class GameManager : MonoBehaviour
     private int zombieCount;
     private PlayerController playerController;
 
+    private WaveSound waveSound;
 
     private void Start()
     {
+        waveSound = new WaveSound(GetComponent<AudioSource>());
         playerController = player.GetComponent<PlayerController>();
         isPlaying = false;
         wave = 0;
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         if (zombieCount <= 0)
         {
+            waveSound.PlaySound("win");
             isPlaying = false;
             zombieCount = 0;
             startButton.gameObject.SetActive(true);
@@ -101,8 +104,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLose()
     {
-        //TODO 졌을 때 화면
-
+        waveSound.PlaySound("lose");
         if (wave <= 0)
         {
             wave = 0;
