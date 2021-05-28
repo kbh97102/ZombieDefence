@@ -7,13 +7,16 @@ public class PlayerShootController : MonoBehaviour
     public GameObject bulletSpawnPoint;
     public Camera mainCamera;
     public AmmoController ammoController;
-    
+
     private Animator _animator;
 
     private bool isReloading;
 
     private FireSoundController soundController;
 
+    private float fireDelta = 0f;
+    private float fireTime = 0.4f;
+    
     private void Start()
     {
         soundController = new FireSoundController(GetComponent<AudioSource>());
@@ -37,7 +40,7 @@ public class PlayerShootController : MonoBehaviour
 
         if (groundPlane.Raycast(cameraRay, out rayLength))
         {
-            var test =  cameraRay.GetPoint(rayLength);
+            var test = cameraRay.GetPoint(rayLength);
             test.x = bulletSpawnPoint.transform.position.x;
             test.y = bulletSpawnPoint.transform.position.y;
             return test;
@@ -58,14 +61,26 @@ public class PlayerShootController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (fireDelta < fireTime)
+        {
+            fireDelta += Time.deltaTime;
+            return;
+        }
+        else
+        {
+            fireDelta = 0;
+        }
+        
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.RightArrow))
         {
             soundController.PlaySound("fire");
             ammoController.Fire();
             _animator.SetTrigger("Fire");
-            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position,
+                bulletSpawnPoint.transform.rotation);
 
-            
+
             bulletObject.GetComponent<Rigidbody>().AddForce(bulletObject.transform.forward * 3000);
         }
     }
@@ -75,14 +90,14 @@ public class PlayerShootController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             soundController.PlaySound("reload");
-            StartCoroutine("test");
+            StartCoroutine("ReloadFinish");
             isReloading = true;
             _animator.SetTrigger("Reload");
             ammoController.reload();
         }
     }
 
-    IEnumerator test()
+    IEnumerator ReloadFinish()
     {
         yield return new WaitForSeconds(2.5f);
         isReloading = false;
