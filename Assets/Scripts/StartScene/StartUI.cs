@@ -10,7 +10,7 @@ public class StartUI : MonoBehaviour
 
     private void Awake()
     {
-        Screen.SetResolution(1980, 1080, FullScreenMode.MaximizedWindow, 144);
+        Screen.SetResolution(1980, 1080, true, 144);
     }
 
     private void Start()
