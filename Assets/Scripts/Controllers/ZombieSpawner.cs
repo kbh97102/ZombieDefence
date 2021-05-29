@@ -93,8 +93,11 @@ public class ZombieSpawner : MonoBehaviour
         
         foreach (GameObject zombie in zombies)
         {
-            zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
-            Destroy(zombie);
+            if (!zombie != null)
+            {
+                zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
+                Destroy(zombie);
+            }
         }
         zombies.Clear();
     }

@@ -32,7 +32,7 @@ public class StartUI : MonoBehaviour
     public string OnClickHelp()
     {
         return
-            "* You can move WASD or arrow keys\nAiming by Mouse\n" +
+            "* You can move WASD\nAiming and Shooting by Arrow Keys\n" +
             "* Press K -> stop bgm\nPress L -> play bgm\n" +
             "* Survive from zombie and Protect your core as longer as you can\n" +
             "* When you start a game, you can't get hp and ammo\n";
