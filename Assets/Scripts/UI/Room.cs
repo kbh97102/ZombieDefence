@@ -73,4 +73,19 @@ public class Room : MonoBehaviourPunCallbacks
         UpdatePlayerList();
     }
 
+
+    public void StartGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("SampleScene");
+        }
+    }
+
+    public void Cancel()
+    {
+        PhotonNetwork.LeaveRoom();
+        panelSwitch.UnActivePanels(new[] {PanelSwitch.ROOM});
+        panelSwitch.ActivePanel(PanelSwitch.LOBBY);
+    }
 }
