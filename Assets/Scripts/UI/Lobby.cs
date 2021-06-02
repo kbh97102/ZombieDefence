@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -16,6 +17,18 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     private Dictionary<string, RoomInfo> cachedRoomList;
     private Dictionary<string, GameObject> roomListEntries;
+
+    private void Awake()
+    {
+        cachedRoomList = new Dictionary<string, RoomInfo>();
+        roomListEntries = new Dictionary<string, GameObject>();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        cachedRoomList.Clear();
+        ClearRoomListView();
+    }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -79,6 +92,9 @@ public class Lobby : MonoBehaviourPunCallbacks
         roomListEntries.Clear();
     }
 
+    public override void OnCreatedRoom()
+    {
+    }
 
     public void CreateButtonClicked()
     {
@@ -88,7 +104,6 @@ public class Lobby : MonoBehaviourPunCallbacks
         byte.TryParse("2", out maxPlayer);
         
         RoomOptions options = new RoomOptions {MaxPlayers = maxPlayer, PlayerTtl = 10000, IsVisible = true};
-        
         PhotonNetwork.CreateRoom(roomName, options, null);
     }
 }
