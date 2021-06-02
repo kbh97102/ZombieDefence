@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject roomPanel;
+    [SerializeField] private PanelSwitch panelSwitch;
     [SerializeField] private GameObject playerList;
     [SerializeField] private GameObject playerListItem;
     
@@ -19,6 +19,7 @@ public class Room : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Join ");
+        
         if (playerListEntries == null)
         {
             playerListEntries = new Dictionary<int, GameObject>();
@@ -57,13 +58,8 @@ public class Room : MonoBehaviourPunCallbacks
         }
 
         playerListEntries.Clear();
-
-
+        
         UpdatePlayerList();
     }
 
-    public void Active()
-    {
-        roomPanel.gameObject.SetActive(true);
-    }
 }

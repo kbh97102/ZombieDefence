@@ -5,13 +5,13 @@ using Photon.Realtime;
 
 public class CreateRoom : MonoBehaviour
 {
-    [SerializeField] private GameObject createPanel;
+    [SerializeField] private PanelSwitch panelSwitch;
     [SerializeField] private InputField nameInput;
     [SerializeField] private Room room;
     
     private void Start()
     {
-        createPanel.gameObject.SetActive(false);
+        panelSwitch.UnActivePanels(new string[]{PanelSwitch.CREATE});
         nameInput.text = "";
     }
 
@@ -24,19 +24,8 @@ public class CreateRoom : MonoBehaviour
 
         RoomOptions options = new RoomOptions {MaxPlayers = maxPlayer, PlayerTtl = 10000, IsVisible = true};
         PhotonNetwork.CreateRoom(roomName, options, null);
-        
-        UnActive();
-        room.Active();
-    }
 
-    public void UnActive()
-    {
         nameInput.text = "";
-        createPanel.gameObject.SetActive(false);
-    }
-
-    public void Active()
-    {
-        createPanel.gameObject.SetActive(true);
+        panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY, PanelSwitch.CREATE});
     }
 }
