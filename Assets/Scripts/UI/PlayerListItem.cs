@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-public class playerListItem : MonoBehaviour
+public class PlayerListItem : MonoBehaviour
 {
     public Text playerNameText;
 

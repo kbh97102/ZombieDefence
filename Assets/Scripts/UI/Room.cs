@@ -27,12 +27,23 @@ public class Room : MonoBehaviourPunCallbacks
         UpdatePlayerList();
     }
     
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        GameObject entry = Instantiate(playerListItem, playerList.transform);
+        
+        var listObject = entry.GetComponent<PlayerListItem>();
+        
+        listObject.Initialize(newPlayer.NickName);
+        
+        playerListEntries.Add(newPlayer.ActorNumber, entry);
+    }
+    
     private void UpdatePlayerList()
     {
         foreach (Player p in PhotonNetwork.PlayerList)
         {
             GameObject playerObject = Instantiate(playerListItem, playerList.transform);
-            var listObject = playerObject.GetComponent<playerListItem>();
+            var listObject = playerObject.GetComponent<PlayerListItem>();
             listObject.Initialize(p.NickName);
 
             if (localPlayer == null)

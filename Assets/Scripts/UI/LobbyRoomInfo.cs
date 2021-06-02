@@ -25,6 +25,7 @@ public class LobbyRoomInfo : MonoBehaviour
 
             PhotonNetwork.JoinRoom(roomName);
             panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY});
+            panelSwitch.ActivePanel(PanelSwitch.ROOM);
         });
     }
 
