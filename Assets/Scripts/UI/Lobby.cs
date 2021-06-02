@@ -14,6 +14,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject roomListView;
     
     [Header("prefabs")] [SerializeField] private GameObject roomListPrefab;
+
+    [Header("ETC")] [SerializeField] private CreateRoom createRoom;
     
     private Dictionary<string, RoomInfo> cachedRoomList;
     private Dictionary<string, GameObject> roomListEntries;
@@ -96,14 +98,5 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
     }
 
-    public void CreateButtonClicked()
-    {
-        var roomName = "Default RoomName";
-
-        byte maxPlayer;
-        byte.TryParse("2", out maxPlayer);
-        
-        RoomOptions options = new RoomOptions {MaxPlayers = maxPlayer, PlayerTtl = 10000, IsVisible = true};
-        PhotonNetwork.CreateRoom(roomName, options, null);
-    }
+    
 }
