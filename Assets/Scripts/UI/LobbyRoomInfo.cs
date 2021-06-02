@@ -14,6 +14,8 @@ public class LobbyRoomInfo : MonoBehaviour
 
     public void Start()
     {
+        var panelSwitch = FindObjectOfType<PanelSwitch>();
+        
         JoinRoomButton.onClick.AddListener(() =>
         {
             if (PhotonNetwork.InLobby)
@@ -22,6 +24,7 @@ public class LobbyRoomInfo : MonoBehaviour
             }
 
             PhotonNetwork.JoinRoom(roomName);
+            panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY});
         });
     }
 
