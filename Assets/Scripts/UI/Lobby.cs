@@ -15,8 +15,6 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     [Header("prefabs")] [SerializeField] private GameObject roomListPrefab;
 
-    [Header("ETC")] [SerializeField] private CreateRoom createRoom;
-    
     private Dictionary<string, RoomInfo> cachedRoomList;
     private Dictionary<string, GameObject> roomListEntries;
 
@@ -94,9 +92,4 @@ public class Lobby : MonoBehaviourPunCallbacks
         roomListEntries.Clear();
     }
 
-    public override void OnCreatedRoom()
-    {
-    }
-
-    
 }

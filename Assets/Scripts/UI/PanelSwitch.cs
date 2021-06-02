@@ -13,7 +13,7 @@ public class PanelSwitch : MonoBehaviour
     public const string CREATE = "create";
     public const string ROOM = "room";
 
-    private void Start()
+    private void Awake()
     {
         panelMap = new Dictionary<string, GameObject>();
         panelMap.Add(LOBBY, lobbyPanel);

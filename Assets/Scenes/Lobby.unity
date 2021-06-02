@@ -946,7 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1388,7 +1388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -692, y: 350}
+  m_AnchoredPosition: {x: -692, y: 349.99997}
   m_SizeDelta: {x: 1384, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1156359299
@@ -1557,7 +1557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomListView: {fileID: 1156359297}
   roomListPrefab: {fileID: 8438939561309718568, guid: bf18ac36b5bc7df45b19399ea0ca2c0e, type: 3}
-  createRoom: {fileID: 1278716507}
 --- !u!114 &1278716507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20815f2159697f848bb4ebdd87da8e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelSwitch: {fileID: 0}
+  panelSwitch: {fileID: 1500469624}
   nameInput: {fileID: 1980372291}
   room: {fileID: 1278716508}
 --- !u!114 &1278716508
@@ -1585,7 +1584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa956bc327a13749a4b1ac2d95a09bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelSwitch: {fileID: 0}
+  panelSwitch: {fileID: 1500469624}
   playerList: {fileID: 1395486605}
   playerListItem: {fileID: 3193449005486006646, guid: 3f340707c29783f45ba1f677dfeba6d0, type: 3}
 --- !u!1 &1301791755
@@ -1971,6 +1970,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1392971540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1392971541}
+  - component: {fileID: 1392971543}
+  - component: {fileID: 1392971542}
+  m_Layer: 5
+  m_Name: Chatpanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1392971541
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392971540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2138219395}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 716, y: 0}
+  m_SizeDelta: {x: 400, y: 1000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1392971542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392971540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1392971543
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392971540}
+  m_CullTransparentMesh: 1
 --- !u!1 &1395486605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,7 +2559,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 243269680}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998781
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3458,6 +3532,7 @@ RectTransform:
   - {fileID: 154100261}
   - {fileID: 549927220}
   - {fileID: 2132122799}
+  - {fileID: 1392971541}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

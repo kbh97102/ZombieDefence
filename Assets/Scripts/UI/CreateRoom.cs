@@ -26,6 +26,13 @@ public class CreateRoom : MonoBehaviour
         PhotonNetwork.CreateRoom(roomName, options, null);
 
         nameInput.text = "";
-        panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY, PanelSwitch.CREATE});
+        panelSwitch.UnActivePanels(new []{PanelSwitch.CREATE});
+        panelSwitch.ActivePanel(PanelSwitch.ROOM);
+    }
+
+    public void Active()
+    {
+        panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY});
+        panelSwitch.ActivePanel(PanelSwitch.CREATE);
     }
 }
