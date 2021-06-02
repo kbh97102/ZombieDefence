@@ -31,7 +31,7 @@ public class StartUI : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("Lobby");
     }
 
     public void OnClickHelpButton()
