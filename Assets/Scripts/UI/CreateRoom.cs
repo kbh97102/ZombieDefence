@@ -7,7 +7,8 @@ public class CreateRoom : MonoBehaviour
 {
     [SerializeField] private GameObject createPanel;
     [SerializeField] private InputField nameInput;
-
+    [SerializeField] private Room room;
+    
     private void Start()
     {
         createPanel.gameObject.SetActive(false);
@@ -25,6 +26,7 @@ public class CreateRoom : MonoBehaviour
         PhotonNetwork.CreateRoom(roomName, options, null);
         
         UnActive();
+        room.Active();
     }
 
     public void UnActive()

@@ -7,6 +7,8 @@ public class StartUI : MonoBehaviourPunCallbacks
     public GameObject helpPanel;
     public Text helpText;
 
+    const string playerNamePrefKey = "PlayerName";
+    
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -15,6 +17,17 @@ public class StartUI : MonoBehaviourPunCallbacks
     private void Start()
     {
         helpText.text = OnClickHelp();
+
+
+        if (PlayerPrefs.HasKey(playerNamePrefKey))
+        {
+            PhotonNetwork.NickName = PlayerPrefs.GetString(playerNamePrefKey);
+        }
+        else
+        {
+            PlayerPrefs.SetString(playerNamePrefKey, "Default Player Name");
+            PhotonNetwork.NickName = "Default Player Name";
+        }
     }
 
     public void OnClickStartGame()
