@@ -27,12 +27,6 @@ public class ZombieSoundController : MonoBehaviour
     private void Awake()
     {
         InitClip();
-
-        soundMap = new Dictionary<ZombieSounds, AudioClip>();
-        soundMap.Add(ZombieSounds.Attack, attackSound);
-        soundMap.Add(ZombieSounds.Attacked, attackedSound);
-        soundMap.Add(ZombieSounds.Idle, idleSound);
-        soundMap.Add(ZombieSounds.Death, deathSound);
     }
 
     public void SetAudioSource(AudioSource audioSource)
@@ -47,6 +41,12 @@ public class ZombieSoundController : MonoBehaviour
         attackSound = Resources.Load<AudioClip>("attackSound");
         deathSound = Resources.Load<AudioClip>("deathSound");       
         attackedSound = Resources.Load<AudioClip>("attackedSound");
+        
+        soundMap = new Dictionary<ZombieSounds, AudioClip>();
+        soundMap.Add(ZombieSounds.Attack, attackSound);
+        soundMap.Add(ZombieSounds.Attacked, attackedSound);
+        soundMap.Add(ZombieSounds.Idle, idleSound);
+        soundMap.Add(ZombieSounds.Death, deathSound);
     }
 
     public void PlaySound(ZombieSounds type)

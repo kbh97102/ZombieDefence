@@ -1,16 +1,15 @@
-using System;
+using Photon.Pun;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartUI : MonoBehaviour
+public class StartUI : MonoBehaviourPunCallbacks
 {
     public GameObject helpPanel;
     public Text helpText;
 
     private void Awake()
     {
-        // Screen.SetResolution(1980, 1080, true, 144);
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     private void Start()
@@ -20,15 +19,26 @@ public class StartUI : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        Debug.Log("Start Click");
+        if (!PhotonNetwork.IsConnected)
+        {
+            Debug.Log("IN");
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.GameVersion = "1";
+        }
     }
 
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+        PhotonNetwork.LoadLevel("SampleScene");
+    }
 
     public void OnClickHelpButton()
     {
         helpPanel.SetActive(true);
     }
-    
+
     public string OnClickHelp()
     {
         return
@@ -42,7 +52,7 @@ public class StartUI : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     public void UnActiveHelpPanel()
     {
         helpPanel.SetActive(false);

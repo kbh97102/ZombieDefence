@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float m_moveSpeed = 2.0f;
     public Camera mainCamera;
 
+    public HPUI hpUI;
+    
     #endregion
 
     #region Private Fields
@@ -108,6 +110,7 @@ public class PlayerController : MonoBehaviour
     private void Attacked()
     {
         hp -= 1;
+        hpUI.UpdateHP(hp);
     }
 
     public int GetHP()

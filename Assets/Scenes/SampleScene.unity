@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 39049243}
   - component: {fileID: 39049245}
   - component: {fileID: 39049244}
+  - component: {fileID: 39049246}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -459,6 +460,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39049242}
   m_CullTransparentMesh: 1
+--- !u!114 &39049246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39049242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40bb58fae3b6d547a385a8a3feefc7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpText: {fileID: 2144772946}
 --- !u!1001 &51042900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -895,6 +909,7 @@ MonoBehaviour:
   startButton: {fileID: 597060390}
   resultPanel: {fileID: 387247586}
   spawner: {fileID: 176473735}
+  hpUI: {fileID: 39049246}
   player: {fileID: 508071146}
   core: {fileID: 1208988534}
 --- !u!4 &82627869
@@ -4875,6 +4890,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
+      propertyPath: hpUI
+      value: 
+      objectReference: {fileID: 39049246}
     - target: {fileID: 8999082946398914439, guid: ec2d057f6b46e0c4abf9739171d0b869, type: 3}
       propertyPath: mainCamera
       value: 
@@ -14293,7 +14312,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '100
+  m_Text: '10
 
 '
 --- !u!222 &2144772947

@@ -44,7 +44,7 @@ public class CoreController : MonoBehaviour
 
     public void ResetHP()
     {
-        currentHP = 10;
+        currentHP = maxHP;
         UpdateSlider();
     }
     

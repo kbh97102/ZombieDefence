@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public GameObject resultPanel;
 
     public ZombieSpawner spawner;
-
+    public HPUI hpUI;
+    
+    
     public GameObject player;
     public CoreController core;
 
@@ -92,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         playerController.ResetHP();
         core.ResetHP();
-        player.GetComponent<PlayerShootController>().ResetAmmo();
         zombieCount = 0;
         wave = 0;
         waveUI.ResetWaveUI();
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
         startButton.gameObject.SetActive(true);
         player.GetComponent<PlayerShootController>().ResetAmmo();
         spawner.ResetZombies();
+        hpUI.UpdateHP(playerController.GetHP());
     }
 
     private void PlayerLose()

@@ -95,8 +95,16 @@ public class ZombieSpawner : MonoBehaviour
         {
             if (!zombie != null)
             {
-                zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
-                Destroy(zombie);
+                try
+                {
+                    zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
+                    Destroy(zombie);
+                }
+                catch (MissingReferenceException e)
+                {
+                    Destroy(zombie);
+                }
+
             }
         }
         zombies.Clear();
