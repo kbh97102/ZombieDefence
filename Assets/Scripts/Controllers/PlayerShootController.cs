@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerShootController : MonoBehaviour
 {
@@ -77,7 +78,7 @@ public class PlayerShootController : MonoBehaviour
             soundController.PlaySound("fire");
             ammoController.Fire();
             _animator.SetTrigger("Fire");
-            var bulletObject = Instantiate(bullet, bulletSpawnPoint.transform.position,
+            var bulletObject = PhotonNetwork.Instantiate("bullet", bulletSpawnPoint.transform.position,
                 bulletSpawnPoint.transform.rotation);
 
 

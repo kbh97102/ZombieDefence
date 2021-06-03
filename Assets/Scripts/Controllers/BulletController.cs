@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using Photon.Pun;
+
 
 public class BulletController : MonoBehaviour
 {
@@ -27,7 +30,13 @@ public class BulletController : MonoBehaviour
 
     public void shooting(Vector3 vector3)
     {
-        Destroy(gameObject, 30f);
+        StartCoroutine("DestroyBullet");
         GetComponent<Rigidbody>().AddForce(vector3 * 3000);
+    }
+
+    private IEnumerator DestroyBullet()
+    {
+        yield return new WaitForSeconds(10f);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
