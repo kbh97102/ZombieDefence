@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -73,12 +73,26 @@ public class Room : MonoBehaviourPunCallbacks
         UpdatePlayerList();
     }
 
-
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        var startFlag = propertiesThatChanged["Start"];
+        if (startFlag != null)
+        {
+            PhotonNetwork.LoadLevel("SampleScene");
+        }
+    }
+    
     public void StartGame()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("SampleScene");
+            int index = 0;
+            var list = PhotonNetwork.PlayerList;
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i].SetCustomProperties(new Hashtable() {{"position", index++}});
+            }
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() {{"Start", true}});
         }
     }
 

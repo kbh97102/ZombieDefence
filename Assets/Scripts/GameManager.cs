@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     [Header("UI")] public WaveUI waveUI;
     public Button startButton;
@@ -9,9 +12,15 @@ public class GameManager : MonoBehaviour
 
     public ZombieSpawner spawner;
     public HPUI hpUI;
+
+    public Camera camera;
+    public AmmoController ammo;
+
+    public GameObject position1;
+    public GameObject position2;
     
     
-    public GameObject player;
+    private GameObject player;
     public CoreController core;
 
     private int wave;
@@ -19,15 +28,42 @@ public class GameManager : MonoBehaviour
     private int zombieCount;
     private PlayerController playerController;
 
+    private Dictionary<int, GameObject> positionMap;
+    
     private WaveSound waveSound;
+
+    private void Awake()
+    {
+        positionMap = new Dictionary<int, GameObject>();
+        positionMap.Add(0, position1);
+        positionMap.Add(1, position2);
+    }
 
     private void Start()
     {
         waveSound = new WaveSound(GetComponent<AudioSource>());
-        playerController = player.GetComponent<PlayerController>();
+        
         isPlaying = false;
         wave = 0;
         UpdateWave();
+        
+        
+        object playerPosition;
+        PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("position", out playerPosition);
+        int index = (int) playerPosition;
+        
+        player = PhotonNetwork.Instantiate("unitychan", positionMap[index].transform.position,
+            Quaternion.identity, 0);
+        PhotonNetwork.LocalPlayer.TagObject = player;
+        
+        
+        playerController = player.GetComponent<PlayerController>();
+        playerController.mainCamera = camera;
+
+        player.GetComponent<PlayerShootController>().mainCamera = camera;
+        player.GetComponent<PlayerShootController>().ammoController = ammo;
+        
+        camera.GetComponent<FollowCamera>().target = player.transform;
     }
 
     private void Update()
