@@ -1,4 +1,5 @@
 using System;
+using Photon.Pun;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,9 +18,14 @@ public class PlayerController : MonoBehaviour
 
     private Animator _animator;
     private int hp;
+    private PhotonView photonView;
 
     #endregion
 
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
 
     private void Start()
     {
@@ -29,6 +35,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         PlayerMove();
         // ChasingCursor();
         PlayerArrowKey();

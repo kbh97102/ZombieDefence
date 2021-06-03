@@ -46,24 +46,27 @@ public class GameManager : MonoBehaviourPunCallbacks
         isPlaying = false;
         wave = 0;
         UpdateWave();
-        
-        
-        object playerPosition;
-        PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("position", out playerPosition);
-        int index = (int) playerPosition;
-        
-        player = PhotonNetwork.Instantiate("unitychan", positionMap[index].transform.position,
-            Quaternion.identity, 0);
-        PhotonNetwork.LocalPlayer.TagObject = player;
-        
-        
-        playerController = player.GetComponent<PlayerController>();
-        playerController.mainCamera = camera;
 
-        player.GetComponent<PlayerShootController>().mainCamera = camera;
-        player.GetComponent<PlayerShootController>().ammoController = ammo;
+        if (player == null)
+        {
+            object playerPosition;
+            PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("position", out playerPosition);
+            int index = (int) playerPosition;
         
-        camera.GetComponent<FollowCamera>().target = player.transform;
+            player = PhotonNetwork.Instantiate("unitychan", positionMap[index].transform.position,
+                Quaternion.identity, 0);
+            PhotonNetwork.LocalPlayer.TagObject = player;
+        
+        
+            playerController = player.GetComponent<PlayerController>();
+            playerController.mainCamera = camera;
+
+            player.GetComponent<PlayerShootController>().mainCamera = camera;
+            player.GetComponent<PlayerShootController>().ammoController = ammo;
+        
+            camera.GetComponent<FollowCamera>().target = player.transform;
+        }
+        
     }
 
     private void Update()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Photon.Pun;
@@ -13,11 +14,18 @@ public class PlayerShootController : MonoBehaviour
 
     private bool isReloading;
 
+    private PhotonView photonView;
+    
     private FireSoundController soundController;
 
     private float fireDelta = 0f;
     private float fireTime = 0.4f;
-    
+
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
+
     private void Start()
     {
         soundController = new FireSoundController(GetComponent<AudioSource>());
@@ -27,6 +35,10 @@ public class PlayerShootController : MonoBehaviour
 
     private void Update()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         Fire();
         Reload();
     }
@@ -57,7 +69,7 @@ public class PlayerShootController : MonoBehaviour
             return;
         }
 
-        if (!ammoController.CanFire())
+        if (ammoController == null ||!ammoController.CanFire())
         {
             return;
         }

@@ -17,12 +17,12 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
 
-        if (other.CompareTag("Object"))
+        if (other.CompareTag("Object") || other.CompareTag("Core"))
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 
