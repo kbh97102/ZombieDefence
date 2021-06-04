@@ -15,6 +15,11 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     [Header("prefabs")] [SerializeField] private GameObject roomListPrefab;
 
+
+    [SerializeField] private PanelSwitch panelSwitch;
+    
+    
+    
     private Dictionary<string, RoomInfo> cachedRoomList;
     private Dictionary<string, GameObject> roomListEntries;
 
@@ -92,4 +97,23 @@ public class Lobby : MonoBehaviourPunCallbacks
         roomListEntries.Clear();
     }
 
+
+    public void RandomMatching()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        var roomName = "Random Room";
+
+        byte maxPlayer;
+        byte.TryParse("2", out maxPlayer);
+
+        RoomOptions options = new RoomOptions {MaxPlayers = maxPlayer, PlayerTtl = 10000, IsVisible = true};
+        PhotonNetwork.CreateRoom(roomName, options, null);
+
+        panelSwitch.UnActivePanels(new[] {PanelSwitch.LOBBY});
+        panelSwitch.ActivePanel(PanelSwitch.ROOM);
+    }
 }

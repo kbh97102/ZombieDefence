@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -119,6 +119,10 @@ public class PlayerController : MonoBehaviour
 
     private void Attacked()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         hp -= 1;
         hpUI.UpdateHP(hp);
     }

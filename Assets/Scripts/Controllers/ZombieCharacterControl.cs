@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
 public class ZombieCharacterControl : MonoBehaviour
@@ -54,7 +55,7 @@ public class ZombieCharacterControl : MonoBehaviour
     private void Start()
     {
         zombieSoundController.SetAudioSource(this.GetComponent<AudioSource>());
-        idleSoundWorker = StartCoroutine("PlayIdleSound");
+        // idleSoundWorker = StartCoroutine("PlayIdleSound");
     }
 
     private void FixedUpdate()
@@ -67,6 +68,11 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void AutoUpdate()
     {
+        if (target == null)
+        {
+            // target = gameManager.core.gameObject;
+            return;
+        }
         var targetPosition = target.transform.position;
         transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f * Time.deltaTime);
         Transform camera = Camera.main.transform;
@@ -159,34 +165,9 @@ public class ZombieCharacterControl : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
-        {
-            m_animator.SetBool("Attack", true);
-            Destroy(gameObject);
-            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
-        }
+    
 
-        if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
-        {
-            m_animator.SetBool("Attack", true);
-            zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Core") && target.name == "ForestCastle_Red")
-        {
-            m_animator.SetBool("Attack", false);
-        }
-
-        if (other.gameObject.CompareTag("Player") && target.name == "unitychan")
-        {
-            m_animator.SetBool("Attack", false);
-        }
-    }
+   
 
     private void Attacked()
     {
@@ -195,10 +176,10 @@ public class ZombieCharacterControl : MonoBehaviour
         if (hp <= 0)
         {
             gameManager.ReduceZombieCount();
-            m_animator.SetTrigger("Dead");
+            m_animator.SetBool("Dead", true);
             isAlive = false;
             StartCoroutine("Died");
-            StopCoroutine("PlayIdleSound");
+            // StopCoroutine("PlayIdleSound");
             zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Death);
         }
         else
@@ -210,7 +191,7 @@ public class ZombieCharacterControl : MonoBehaviour
     private IEnumerator Died()
     {
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private IEnumerator PlayIdleSound()

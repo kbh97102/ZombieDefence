@@ -30,6 +30,13 @@ public class CreateRoom : MonoBehaviour
         panelSwitch.ActivePanel(PanelSwitch.ROOM);
     }
 
+    public void CancelButtonClicked()
+    {
+        nameInput.text = "";
+        panelSwitch.UnActivePanels(new []{PanelSwitch.CREATE});
+        panelSwitch.ActivePanel(PanelSwitch.LOBBY);
+    }
+
     public void Active()
     {
         panelSwitch.UnActivePanels(new []{PanelSwitch.LOBBY});

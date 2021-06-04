@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -13,10 +14,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private GameObject point3;
     [SerializeField] private GameObject point4;
 
-    [Header("Zombie prefabs")]
-    [SerializeField] private GameObject zombieToTower;
-
-    [Header("Player")] [SerializeField] private GameObject target_player;
+    private GameObject target_player;
 
     [Header("Core")] [SerializeField] private GameObject target_core;
 
@@ -54,18 +52,21 @@ public class ZombieSpawner : MonoBehaviour
 
     private void SpawnZombie()
     {
+        var list = FindObjectsOfType<PlayerController>();
+
+        int randomPlayerTarget = (int) Random.Range(0, list.Length);
         GameObject position = GetRandomPosition();
         int randomTarget = (int) Random.Range(0, 2f);
         GameObject zombie;
         if (randomTarget <= 0)
         {
-            zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
+            zombie = PhotonNetwork.Instantiate("Zombie", position.transform.position, position.transform.rotation);
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_core);
         }
         else
         {
-            zombie = Instantiate(zombieToTower, position.transform.position, position.transform.rotation);
-            zombie.GetComponent<ZombieCharacterControl>().SetTarget(target_player);
+            zombie = PhotonNetwork.Instantiate("Zombie", position.transform.position, position.transform.rotation);
+            zombie.GetComponent<ZombieCharacterControl>().SetTarget(list[randomPlayerTarget].gameObject);
         }
         zombie.GetComponent<ZombieCharacterControl>().SetGameManager(gameManager);
         zombies.Add(zombie);

@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             player.GetComponent<PlayerShootController>().mainCamera = camera;
             player.GetComponent<PlayerShootController>().ammoController = ammo;
-        
+
+            playerController.hpUI = hpUI;
+            
             camera.GetComponent<FollowCamera>().target = player.transform;
         }
         
@@ -164,5 +166,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         );
         ReSetGame();
         resultPanel.gameObject.SetActive(true);
+    }
+
+
+    public void PlayerAttacked()
+    {
+        
     }
 }
