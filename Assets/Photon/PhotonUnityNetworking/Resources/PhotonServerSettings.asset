@@ -41,6 +41,8 @@ MonoBehaviour:
   - WaveEnd
   - PlayerLose
   - ReSetGame
+  - ReStart
+  - ClearZombies
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

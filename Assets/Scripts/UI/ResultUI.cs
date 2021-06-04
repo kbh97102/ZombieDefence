@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -16,26 +17,28 @@ public class ResultUI : MonoBehaviour
 
     private PhotonView photonView;
 
-
-    public void SetPhotonView(PhotonView photonView)
+    private void Awake()
     {
-        this.photonView = photonView;
+        photonView = PhotonView.Get(this);
     }
-    
+
     #region Button CallBacks
 
     public void OnClickRetry()
     {
-        this.gameObject.SetActive(false);
-        gameManager.StartGame();
+        photonView.RPC("ReStart", RpcTarget.All);
     }
 
+    [PunRPC]
+    private void ReStart()
+    {
+        this.gameObject.SetActive(false);
+        gameManager.ReSetGame();
+        gameManager.StartGame();
+    }
+    
     public void OnClickBackToLobby()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
         gameObject.SetActive(false);
         PhotonNetwork.LoadLevel("Lobby");
         PhotonNetwork.LeaveRoom();

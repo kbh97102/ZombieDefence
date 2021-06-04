@@ -20,6 +20,8 @@ public class ZombieSpawner : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    private PhotonView photonView;
+
     #endregion
 
     private IEnumerator spawner;
@@ -27,7 +29,12 @@ public class ZombieSpawner : MonoBehaviour
     private ArrayList zombies;
 
     private Coroutine spawnWorker;
-    
+
+    private void Awake()
+    {
+        photonView = PhotonView.Get(this);
+    }
+
     private void Start()
     {
         zombies = new ArrayList();
@@ -68,6 +75,7 @@ public class ZombieSpawner : MonoBehaviour
             zombie = PhotonNetwork.Instantiate("Zombie", position.transform.position, position.transform.rotation);
             zombie.GetComponent<ZombieCharacterControl>().SetTarget(list[randomPlayerTarget].gameObject);
         }
+
         zombie.GetComponent<ZombieCharacterControl>().SetGameManager(gameManager);
         zombies.Add(zombie);
     }
@@ -87,27 +95,34 @@ public class ZombieSpawner : MonoBehaviour
 
     public void ResetZombies()
     {
+        // photonView.RPC("ClearZombies", RpcTarget.All);
+        ClearZombies();
+    }
+
+    // [PunRPC]
+    private void ClearZombies()
+    {
         if (spawnWorker != null)
         {
             StopCoroutine(spawnWorker);
         }
-        
+
         foreach (GameObject zombie in zombies)
         {
-            if (!zombie != null)
+            if (zombie != null)
             {
                 try
                 {
                     zombie.GetComponent<ZombieCharacterControl>().StopPlaySound();
-                    Destroy(zombie);
+                    PhotonNetwork.Destroy(zombie);
                 }
                 catch (MissingReferenceException e)
                 {
-                    Destroy(zombie);
+                    PhotonNetwork.Destroy(zombie);
                 }
-
             }
         }
+
         zombies.Clear();
     }
 }

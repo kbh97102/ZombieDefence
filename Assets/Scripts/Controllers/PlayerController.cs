@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator _animator;
     private int hp;
+    private int maxHP;
     private PhotonView photonView;
 
     #endregion
@@ -25,11 +26,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         photonView = GetComponent<PhotonView>();
+        maxHP = 10;
     }
 
     private void Start()
     {
-        hp = 10;
+        hp = maxHP;
         _animator = GetComponent<Animator>();
     }
 
@@ -134,6 +136,6 @@ public class PlayerController : MonoBehaviour
 
     public void ResetHP()
     {
-        hp = 1;
+        hp = maxHP;
     }
 }

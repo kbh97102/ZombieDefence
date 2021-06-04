@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         positionMap.Add(1, position2);
         
         photonView = PhotonView.Get(this);
-        resultPanel.GetComponent<ResultUI>().SetPhotonView(this.photonView);
     }
 
     private void Start()
@@ -133,7 +132,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (core.GetHP() <= 0 || playerController.GetHP() <= 0)
         {
+            Debug.Log("CheckLose you lose");
             photonView.RPC("PlayerLose", RpcTarget.All);
+        }
+        else
+        {
+            Debug.Log("Check lose");
         }
     }
 
