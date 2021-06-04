@@ -10,6 +10,10 @@ public class FollowCamera : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+        {
+            return;
+        }
         transform.position = target.position + offset;
     }
 }

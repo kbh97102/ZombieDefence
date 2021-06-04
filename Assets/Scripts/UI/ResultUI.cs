@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,7 +13,14 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private Text playerHP;
     [SerializeField] private Text lastWave;
     [SerializeField] private Text remainZombies;
-    
+
+    private PhotonView photonView;
+
+
+    public void SetPhotonView(PhotonView photonView)
+    {
+        this.photonView = photonView;
+    }
     
     #region Button CallBacks
 
@@ -24,8 +32,13 @@ public class ResultUI : MonoBehaviour
 
     public void OnClickBackToLobby()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         gameObject.SetActive(false);
-        SceneManager.LoadScene("StartScene");
+        PhotonNetwork.LoadLevel("Lobby");
+        PhotonNetwork.LeaveRoom();
     }    
     
     #endregion

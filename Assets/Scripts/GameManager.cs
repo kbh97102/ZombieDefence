@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -18,8 +17,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameObject position1;
     public GameObject position2;
-    
-    
+
+
     private GameObject player;
     public CoreController core;
 
@@ -29,20 +28,25 @@ public class GameManager : MonoBehaviourPunCallbacks
     private PlayerController playerController;
 
     private Dictionary<int, GameObject> positionMap;
-    
+
     private WaveSound waveSound;
+
+    private PhotonView photonView;
 
     private void Awake()
     {
         positionMap = new Dictionary<int, GameObject>();
         positionMap.Add(0, position1);
         positionMap.Add(1, position2);
+        
+        photonView = PhotonView.Get(this);
+        resultPanel.GetComponent<ResultUI>().SetPhotonView(this.photonView);
     }
 
     private void Start()
     {
         waveSound = new WaveSound(GetComponent<AudioSource>());
-        
+
         isPlaying = false;
         wave = 0;
         UpdateWave();
@@ -52,12 +56,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             object playerPosition;
             PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("position", out playerPosition);
             int index = (int) playerPosition;
-        
+
             player = PhotonNetwork.Instantiate("unitychan", positionMap[index].transform.position,
                 Quaternion.identity, 0);
             PhotonNetwork.LocalPlayer.TagObject = player;
-        
-        
+
+
             playerController = player.GetComponent<PlayerController>();
             playerController.mainCamera = camera;
 
@@ -65,10 +69,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             player.GetComponent<PlayerShootController>().ammoController = ammo;
 
             playerController.hpUI = hpUI;
-            
+
+            // photonView = player.GetPhotonView();
+
             camera.GetComponent<FollowCamera>().target = player.transform;
         }
-        
     }
 
     private void Update()
@@ -104,13 +109,19 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (zombieCount <= 0)
         {
-            waveSound.PlaySound("win");
-            isPlaying = false;
-            zombieCount = 0;
-            startButton.gameObject.SetActive(true);
-            wave++;
-            UpdateWave();
+            photonView.RPC("WaveEnd", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void WaveEnd()
+    {
+        waveSound.PlaySound("win");
+        isPlaying = false;
+        zombieCount = 0;
+        startButton.gameObject.SetActive(true);
+        wave++;
+        UpdateWave();
     }
 
     private void CheckLose()
@@ -122,7 +133,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (core.GetHP() <= 0 || playerController.GetHP() <= 0)
         {
-            PlayerLose();
+            photonView.RPC("PlayerLose", RpcTarget.All);
         }
     }
 
@@ -131,6 +142,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         zombieCount -= 1;
     }
 
+    [PunRPC]
     public void ReSetGame()
     {
         playerController.ResetHP();
@@ -145,6 +157,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         hpUI.UpdateHP(playerController.GetHP());
     }
 
+    [PunRPC]
     private void PlayerLose()
     {
         waveSound.PlaySound("lose");
@@ -157,7 +170,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             wave -= 1;
         }
 
-            resultPanel.GetComponent<ResultUI>().SetResult(
+        resultPanel.GetComponent<ResultUI>().SetResult(
             player.GetComponent<PlayerShootController>().GetAmmo().ToString(),
             core.GetHP().ToString(),
             playerController.GetHP().ToString(),
@@ -168,9 +181,4 @@ public class GameManager : MonoBehaviourPunCallbacks
         resultPanel.gameObject.SetActive(true);
     }
 
-
-    public void PlayerAttacked()
-    {
-        
-    }
 }

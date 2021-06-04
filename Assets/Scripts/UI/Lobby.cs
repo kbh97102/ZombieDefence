@@ -101,6 +101,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     public void RandomMatching()
     {
         PhotonNetwork.JoinRandomRoom();
+        panelSwitch.UnActivePanels(new[] {PanelSwitch.LOBBY});
+        panelSwitch.ActivePanel(PanelSwitch.ROOM);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -116,4 +118,5 @@ public class Lobby : MonoBehaviourPunCallbacks
         panelSwitch.UnActivePanels(new[] {PanelSwitch.LOBBY});
         panelSwitch.ActivePanel(PanelSwitch.ROOM);
     }
+
 }
