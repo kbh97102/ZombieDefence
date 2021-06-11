@@ -74,7 +74,7 @@ public class ZombieCharacterControl : MonoBehaviour
             return;
         }
         var targetPosition = target.transform.position;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f * Time.deltaTime);
+        // transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f * Time.deltaTime);
         Transform camera = Camera.main.transform;
         if (camera == null)
         {
@@ -103,6 +103,9 @@ public class ZombieCharacterControl : MonoBehaviour
             lookAt.y = transform.position.y;
             transform.LookAt(lookAt);
 
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position,
+                m_moveSpeed * Time.deltaTime);
+            
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
         }
         // else
