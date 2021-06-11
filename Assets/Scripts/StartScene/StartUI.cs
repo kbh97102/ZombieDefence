@@ -55,10 +55,12 @@ public class StartUI : MonoBehaviourPunCallbacks
     public string OnClickHelp()
     {
         return
-            "* You can move WASD\nAiming and Shooting by Arrow Keys\n" +
-            "* Press K -> stop bgm\nPress L -> play bgm\n" +
-            "* Survive from zombie and Protect your core as longer as you can\n" +
-            "* When you start a game, you can't get hp and ammo\n";
+            "* You can move WASD\n  Aiming and Shooting by Arrow Keys\n" +
+            "* Press K -> stop bgm\n  Press L -> play bgm\n" +
+            "* Survive from zombie and\n  Protect your core as longer as you can\n" +
+            "* When you start a game\n  you can't get hp and ammo\n" +
+            "* you can play With friend\n  or use random matching\n  or play alone\n" +
+            "* You can make a room";
     }
 
     public void ExitProgram()
