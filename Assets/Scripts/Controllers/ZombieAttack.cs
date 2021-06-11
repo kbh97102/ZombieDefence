@@ -10,11 +10,10 @@ public class ZombieAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision in "+other.gameObject.name);
         if (other.gameObject.CompareTag("Core"))
         {
             m_animator.SetBool("Attack", true);
-            // Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
             zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
         }
 

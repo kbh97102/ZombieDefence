@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CoreController : MonoBehaviour
 {
-    [SerializeField]private Slider slider;
+    [SerializeField] private Text coreHP;
     
     private int currentHP;
     private int maxHP;
@@ -19,12 +19,7 @@ public class CoreController : MonoBehaviour
         currentHP = maxHP;
     }
 
-    private void Update()
-    {
-        UpdateSlider();
-    }
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -35,11 +30,12 @@ public class CoreController : MonoBehaviour
     private void Attacked()
     {
         currentHP -= 1;
+        UpdateSlider();
     }
     
     private void UpdateSlider()
     {
-        slider.value = (float) currentHP / maxHP;
+        coreHP.text = currentHP.ToString();
     }
 
     public void ResetHP()
