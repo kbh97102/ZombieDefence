@@ -179,7 +179,7 @@ public class ZombieCharacterControl : MonoBehaviour
             m_animator.SetBool("Dead", true);
             isAlive = false;
             StartCoroutine("Died");
-            // StopCoroutine("PlayIdleSound");
+            StopCoroutine("PlayIdleSound");
             zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Death);
         }
         else
