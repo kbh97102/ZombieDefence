@@ -23,6 +23,9 @@ public class Lobby : MonoBehaviourPunCallbacks
     private Dictionary<string, RoomInfo> cachedRoomList;
     private Dictionary<string, GameObject> roomListEntries;
 
+
+    private bool reConnect = true;
+    
     private void Awake()
     {
         cachedRoomList = new Dictionary<string, RoomInfo>();
@@ -31,6 +34,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
+        Debug.Log("Join lobby");
         cachedRoomList.Clear();
         ClearRoomListView();
     }
@@ -118,5 +122,37 @@ public class Lobby : MonoBehaviourPunCallbacks
         panelSwitch.UnActivePanels(new[] {PanelSwitch.LOBBY});
         panelSwitch.ActivePanel(PanelSwitch.ROOM);
     }
+
+    public void LeaveLobby()
+    {
+        if (PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby();
+        }
+
+        PhotonNetwork.LoadLevel(0);
+        PhotonNetwork.Disconnect();
+    }
+
+    public void ReconnectForRoomListUpdate()
+    {
+        reConnect = true;
+        PhotonNetwork.Disconnect();
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (reConnect)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            reConnect = false;
+        }
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+
 
 }

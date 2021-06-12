@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -12,6 +13,14 @@ public class CoreController : MonoBehaviour
     private int currentHP;
     private int maxHP;
 
+    private PhotonView photonView;
+
+    private GameManager gameManager;
+    private void Awake()
+    {
+        photonView = PhotonView.Get(this);
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Start()
     {
@@ -23,11 +32,13 @@ public class CoreController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Attacked();
+            photonView.RPC("CoreAttacked", RpcTarget.All);
+            gameManager.ReduceZombieCount();
         }
     }
 
-    private void Attacked()
+    [PunRPC]
+    private void CoreAttacked()
     {
         currentHP -= 1;
         UpdateSlider();

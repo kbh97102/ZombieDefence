@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
@@ -13,8 +14,8 @@ public class ZombieAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Core"))
         {
             m_animator.SetBool("Attack", true);
-            Destroy(gameObject.transform.parent.gameObject);
             zombieSoundController.PlaySound(ZombieSoundController.ZombieSounds.Attack);
+            PhotonNetwork.Destroy(gameObject.transform.parent.gameObject);
         }
 
         if (other.gameObject.CompareTag("Player"))

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CreateRoom : MonoBehaviour
+public class CreateRoom : MonoBehaviourPunCallbacks
 {
     [SerializeField] private PanelSwitch panelSwitch;
     [SerializeField] private InputField nameInput;
@@ -17,7 +17,7 @@ public class CreateRoom : MonoBehaviour
 
     public void CreateButtonClicked()
     {
-        var roomName = "Default RoomName";
+        var roomName = nameInput.text;
 
         byte maxPlayer;
         byte.TryParse("2", out maxPlayer);
@@ -28,6 +28,11 @@ public class CreateRoom : MonoBehaviour
         nameInput.text = "";
         panelSwitch.UnActivePanels(new []{PanelSwitch.CREATE});
         panelSwitch.ActivePanel(PanelSwitch.ROOM);
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        PhotonNetwork.Reconnect();
     }
 
     public void CancelButtonClicked()
