@@ -111,7 +111,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        var roomName = "Random Room";
+        var roomName = "Random Room"+Time.time;
 
         byte maxPlayer;
         byte.TryParse("2", out maxPlayer);

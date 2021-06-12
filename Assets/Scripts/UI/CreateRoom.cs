@@ -18,7 +18,10 @@ public class CreateRoom : MonoBehaviourPunCallbacks
     public void CreateButtonClicked()
     {
         var roomName = nameInput.text;
-
+        if (roomName=="")
+        {
+            roomName = "Random" + Time.time;
+        }
         byte maxPlayer;
         byte.TryParse("2", out maxPlayer);
 

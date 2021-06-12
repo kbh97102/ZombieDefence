@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             camera.GetComponent<FollowCamera>().target = player.transform;
         }
+
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            startButton.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -118,7 +123,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         waveSound.PlaySound("win");
         isPlaying = false;
         zombieCount = 0;
-        startButton.gameObject.SetActive(true);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            startButton.gameObject.SetActive(true);
+        }
         wave++;
         UpdateWave();
     }
